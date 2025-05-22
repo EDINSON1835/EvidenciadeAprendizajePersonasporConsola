@@ -4,55 +4,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    private static final ArrayList<Persona> personas = new ArrayList<>();
-    private static final Scanner scanner = new Scanner(System.in);
+    public static ArrayList<Persona> capturarPersonas() {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Persona> personas = new ArrayList<>();
 
-    public static void main(String[] args) {
-        capturarPersonas();
-        mostrarNombresYGeneros();
-        System.out.println("Promedio de edades: " + calcularPromedioEdad());
-        System.out.println("Cantidad de personas masculinas: " + contarGenero("Masculino"));
-        System.out.println("Cantidad de personas femeninas: " + contarGenero("Femenino"));
-    }
-
-    public static void capturarPersonas() {
         for (int i = 0; i < 5; i++) {
-            System.out.println("\nIngrese los datos de la persona " + (i + 1));
-            System.out.print("Nombre: ");
+            System.out.println("Ingrese nombre:");
             String nombre = scanner.nextLine();
-            System.out.print("Apellido: ");
+            System.out.println("Ingrese apellido:");
             String apellido = scanner.nextLine();
-            System.out.print("Género (Masculino/Femenino): ");
+            System.out.println("Ingrese género (Masculino/Femenino):");
             String genero = scanner.nextLine();
-            System.out.print("Edad: ");
+            System.out.println("Ingrese edad:");
             int edad = Integer.parseInt(scanner.nextLine());
 
             personas.add(new Persona(nombre, apellido, genero, edad));
         }
+        return personas;
     }
 
-    public static void mostrarNombresYGeneros() {
-        System.out.println("\nNombres y Géneros:");
-        for (Persona persona : personas) {
-            System.out.println(persona.getNombre() + " - " + persona.getGenero());
-        }
-    }
-
-    public static double calcularPromedioEdad() {
-        int suma = 0;
-        for (Persona persona : personas) {
-            suma += persona.getEdad();
-        }
-        return (double) suma / personas.size();
-    }
-
-    public static int contarGenero(String generoBuscado) {
-        int contador = 0;
-        for (Persona persona : personas) {
-            if (persona.getGenero().equalsIgnoreCase(generoBuscado)) {
-                contador++;
-            }
-        }
-        return contador;
+    public static void main(String[] args) {
+        ArrayList<Persona> personas = capturarPersonas();
     }
 }
