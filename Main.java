@@ -3,27 +3,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Main {
-    public static ArrayList<Persona> capturarPersonas() {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Persona> personas = new ArrayList<>();
+public static void main(String[] args) {
+    ArrayList<Persona> personas = capturarPersonas();
 
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Ingrese nombre:");
-            String nombre = scanner.nextLine();
-            System.out.println("Ingrese apellido:");
-            String apellido = scanner.nextLine();
-            System.out.println("Ingrese género (Masculino/Femenino):");
-            String genero = scanner.nextLine();
-            System.out.println("Ingrese edad:");
-            int edad = Integer.parseInt(scanner.nextLine());
+    double promedio = calcularPromedioEdad(personas);
+    System.out.println("Promedio de edad: " + promedio);
+}
 
-            personas.add(new Persona(nombre, apellido, genero, edad));
-        }
-        return personas;
+public static double calcularPromedioEdad(ArrayList<Persona> personas) {
+    int suma = 0;
+    for (Persona persona : personas) {
+        suma += persona.getEdad();
     }
-
-    public static void main(String[] args) {
-        ArrayList<Persona> personas = capturarPersonas();
-    }
+    return (double) suma / personas.size();
 }
