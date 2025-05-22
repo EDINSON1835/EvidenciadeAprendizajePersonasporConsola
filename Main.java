@@ -15,7 +15,30 @@ public class Main {
         System.out.println("Cantidad de personas femeninas: " + contarGenero("Femenino"));
     }
 
-     public static double calcularPromedioEdad() {
+    public static void capturarPersonas() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("\nIngrese los datos de la persona " + (i + 1));
+            System.out.print("Nombre: ");
+            String nombre = scanner.nextLine();
+            System.out.print("Apellido: ");
+            String apellido = scanner.nextLine();
+            System.out.print("Género (Masculino/Femenino): ");
+            String genero = scanner.nextLine();
+            System.out.print("Edad: ");
+            int edad = Integer.parseInt(scanner.nextLine());
+
+            personas.add(new Persona(nombre, apellido, genero, edad));
+        }
+    }
+
+    public static void mostrarNombresYGeneros() {
+        System.out.println("\nNombres y Géneros:");
+        for (Persona persona : personas) {
+            System.out.println(persona.getNombre() + " - " + persona.getGenero());
+        }
+    }
+
+    public static double calcularPromedioEdad() {
         int suma = 0;
         for (Persona persona : personas) {
             suma += persona.getEdad();
